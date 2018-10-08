@@ -1,0 +1,2 @@
+# aglo
+algorithm
