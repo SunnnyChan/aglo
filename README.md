@@ -1,2 +1,2 @@
-# aglo
-algorithm
+# Algorithm
+
