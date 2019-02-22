@@ -2,14 +2,14 @@
 
 * [Java](java/README.md)
 
-## Products
-### MQ
+## MQ
 * [Apache Kafka](apache-kafka/README.md)
 * [Nsq](nsp/nsq.md)
 
-### Distributed 
+## Distributed 
 * [Apache Dubbo](apache-dubbo/README.md)
 * [tcc-transaction]()
+
 
 ## [Linux CMD](linux-cmd/README.md)
 
