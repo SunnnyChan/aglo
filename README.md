@@ -1,22 +1,26 @@
 # Reading Source Code
 
-* [Java](java/README.md)
 
-## DB
+## [How]
+
+## Project
+
+* [Java](java/README.md)
+* [Linux CMD](linux-cmd/README.md)
+
+### DB
 * [MyBatis](mybatis/README.md)
 
-## MQ
+### MQ
 * [Apache Kafka](apache-kafka/README.md)
 * [Nsq](nsp/nsq.md)
 
-## Distributed 
+### Distributed 
 * [Apache Dubbo](apache-dubbo/README.md)
-* [tcc-transaction]()
-
-
-## [Linux CMD](linux-cmd/README.md)
+* [tcc-transaction](tcc-transaction/README.md)
 
 ## 参考
+* [如何阅读Java源码](https://www.toutiao.com/a6660259363988439555/)
 * [芋道源码](http://www.iocoder.cn/)
 
 
