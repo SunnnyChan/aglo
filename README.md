@@ -1,7 +1,7 @@
 # Reading Source Code
 
 
-## [How]
+## [How]()
 
 ## Project
 
@@ -20,7 +20,6 @@
 * [tcc-transaction](tcc-transaction/README.md)
 
 ## 参考
-* [如何阅读Java源码](https://www.toutiao.com/a6660259363988439555/)
 * [芋道源码](http://www.iocoder.cn/)
 
 
