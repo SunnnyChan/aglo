@@ -1,14 +1,15 @@
 # Nginx
-* 工作模式
+## 工作模式
 ```md
 	单工作进程模式（默认）
 		除主进程外，还有一个工作进程，且工作进程是单线程的
 	多工作进程模式
 		每个工作进程包含多工作线程
 ```
-* [Config](config/README.md)
-* [Nginx Variables](variables/README.md)
-* [Modules](https://www.nginx.com/resources/wiki/modules/)
+## [Config](config/README.md)
+## [Nginx Variables](variables/README.md)
+## [Modules](https://www.nginx.com/resources/wiki/modules/)
+* [ngx_http_limit_req_module](modules/ngx_http_limit_req_module.md)
 ```md
 	模块的类型
 		event module
@@ -116,7 +117,7 @@
 
 ```
 
-* nginx事件处理
+## nginx事件处理
 ```md
 		nginx需要将所有关心的fd注册到epoll
 		static ngx_int_t ngx_epoll_add_event(ngx_event_t *ev, ngx_int_t event, ngx_uint_t flags);
