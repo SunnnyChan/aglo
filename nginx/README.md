@@ -7,7 +7,7 @@
 		每个工作进程包含多工作线程
 ```
 * [Config](config/README.md)
-* Nginx 变量
+* [Nginx Variables](variables/README.md)
 * [Modules](https://www.nginx.com/resources/wiki/modules/)
 ```md
 	模块的类型
