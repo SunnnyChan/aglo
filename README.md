@@ -3,12 +3,10 @@
 
 ## [How](How.md)
 
-## Project
+* [Java](java/README.md)
 
-* [Nginx](nginx/README.md)
-
-## [Java](java/README.md)
-## [Linux CMD](linux-cmd/README.md)
+## Web
+* [Nginx](web/nginx/README.md)
 
 ### DB
 * [MyBatis](mybatis/README.md)
@@ -20,6 +18,9 @@
 ### Distributed 
 * [Apache Dubbo](apache-dubbo/README.md)
 * [tcc-transaction](tcc-transaction/README.md)
+
+## Linux
+* [CMD](linux-cmd/README.md)
 
 ## 参考
 * [芋道源码](http://www.iocoder.cn/)
