@@ -3,8 +3,8 @@
 * helium
 * interpreter
 * [notebook](notebook/README.md)
-> * repo //Note持久化子系统
-> * serach //Note的全文检索子系统
+> * repo //Note持久化
+> * serach //Note的全文检索
 
 * plugin
 * scheduler

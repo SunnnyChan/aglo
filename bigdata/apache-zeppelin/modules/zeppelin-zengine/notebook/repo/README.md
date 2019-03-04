@@ -42,3 +42,7 @@ zeppelinhub是一个类似于Github的分享网站，区别在于Github是分享
 * /zeppelin-plugins/notebookrepo/vfs/ 
 
 ***[VFSNotebookRepo.java](VFSNotebookRepo.md)***
+
+
+## Reference
+* [* Notebook storage options for Apache Zeppelin](https://zeppelin.apache.org/docs/0.7.0/storage/storage.html)
