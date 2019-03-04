@@ -10,7 +10,7 @@
 * [LockSupport](sync/LockSupport.md)
 
 ## Thread Safe
-* [ThreadLocal](safe/ThreadLocal.md)
+* [ThreadLocal](safe/threadLocal/README.md)
 
 ## Class Graph
 ### JUC Thread Class Graph
