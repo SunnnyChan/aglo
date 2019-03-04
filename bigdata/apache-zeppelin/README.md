@@ -6,11 +6,11 @@
 ```md
 项目入口，通过Jetty内嵌服务器提供WebSocekt服务和RESTful服务，并且提供了基本的权限验证服务。
 ```
-* zeppelin-zengine
+* [zeppelin-zengine](modules/zeppelin-zengine/README.md)
 ```md
 实现 Notebook 的持久化和检索服务。
 ```
-* zeppelin-interpreter
+* [zeppelin-interpreter](modules/zeppelin-interpreter/README.md)
 ```md
 抽象了 interpreter 接口，规定了解释器的功能。
 并且提供了与 zeppelin-zengine 用 Thrift 进行通信的协议。
