@@ -2,7 +2,7 @@
 
 
 ## Modules
-* zeppelin-server
+* [zeppelin-server](modules/zeppelin-server/README.md)
 ```md
 项目入口，通过Jetty内嵌服务器提供WebSocekt服务和RESTful服务，并且提供了基本的权限验证服务。
 ```
