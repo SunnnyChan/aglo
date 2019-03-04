@@ -21,27 +21,13 @@ Notebook的持久化子系统主要由 NotebookRepo 以及其子类组成。
 zeppelin目前只支持最大2个Repo（maxRepoNum=2作为编译时常量），不能通过配置修改。
 ```
 
-* /zeppelin-plugins/notebookrepo
-```shell
-$ ls -1 zeppelin-plugins/notebookrepo
-azure
-filesystem
-gcs
-git
-github
-s3
-vfs
-zeppelin-hub
-```
 ```md
 S3NotebookRepo和AzureNotebookRepo，实现向2大云存储系统的持久化Notebook。
 ZeppelinHubRepo是为了向zeppelinhub持久化Notebook而设计的，
 zeppelinhub是一个类似于Github的分享网站，区别在于Github是分享git仓库的，zeppelinhub是分享note的。
 ```
 
-* /zeppelin-plugins/notebookrepo/vfs/ 
-
-***[VFSNotebookRepo.java](VFSNotebookRepo.md)***
+* [VFSNotebookRepo.java](VFSNotebookRepo.md)
 
 
 ## Reference
