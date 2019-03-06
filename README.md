@@ -13,6 +13,7 @@
 
 ### DB
 * [MyBatis](java-framework/mybatis/README.md)
+* [Redis](infra/redis/README.md)
 
 ### MQ
 * [Apache Kafka](bigdata/apache-kafka/README.md)
