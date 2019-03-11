@@ -24,6 +24,7 @@
 * [Apache Thrift](infra/apache-thrift/README.md)
 
 ### Distributed 
+* [Apache Zookeeper](infra/apache-zookeeper/README.md)
 * [tcc-transaction](infra/tcc-transaction/README.md)
 
 ## Linux
