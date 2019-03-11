@@ -19,8 +19,11 @@
 * [Apache Kafka](bigdata/apache-kafka/README.md)
 * [Nsq](infra/nsp/nsq.md)
 
-### Distributed 
+### MricService
 * [Apache Dubbo](infra/apache-dubbo/README.md)
+* [Apache Thrift](infra/apache-thrift/README.md)
+
+### Distributed 
 * [tcc-transaction](infra/tcc-transaction/README.md)
 
 ## Linux
