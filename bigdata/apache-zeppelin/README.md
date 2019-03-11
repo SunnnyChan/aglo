@@ -1,6 +1,8 @@
 # Apache Zeppelin
-
-
+```md
+是一款基于Web的多用途笔记本，用于数据分析和数据可视化。
+```
+s
 ## Directories
 * /bin
 * /notebook  //默认的notebook的持久化存储目录
