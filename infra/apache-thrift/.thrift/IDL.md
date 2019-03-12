@@ -1,42 +1,37 @@
-#
+# [IDL (Thrift interface description language)](http://thrift.apache.org/docs/idl)
+```md
+在使用 Thrift 前, 需要提供一个 .thrift 后缀的文件, 其内容是使用 IDL 描述的服务接口信息。
+Thrift IDL提供了用于为每种目标语言生成代码的类型的描述。
 
-## Types
-```md
-	Thrift类型系统包括预定义基本类型，用户自定义结构体，容器类型，异常和服务定义
+Thrift 接口定义语言（IDL）允许定义Thrift类型。
+Thrift IDL文件由Thrift代码生成器处理，以生成各种目标语言的代码，以支持IDL文件中定义的结构和服务。
 ```
-* 基本类型
-```md
-bool：布尔类型(true or value)，占一个字节
-byte：有符号字节
-i16:16位有符号整型
-i32:32位有符号整型
-i64:64位有符号整型
-double：64位浮点数
-string：未知编码或者二进制的字符串
 
-注意，thrift不支持无符号整型，因为很多目标语言不存在无符号整型（如java）。
-```
-* 容器类型
-```md
-Thrift容器与类型密切相关，它与当前流行编程语言提供的容器类型相对应，采用java泛型风格表示的。
-List<t1>：一系列t1类型的元素组成的有序表，元素可以重复
-Set<t1>：一系列t1类型的元素组成的无序表，元素唯一
-Map<t1,t2>：key/value对（key的类型是t1且key唯一，value类型是t2）。
+* 实例
+```thrift
+enum ResponseStatus {
+  OK = 0,
+  ERROR = 1,
+}
 
-容器中的元素类型可以是除了service以外的任何合法thrift类型（包括结构体和异常）
-```
-* 结构体和异常
-```md
-Thrift结构体在概念上同C语言结构体类型—-一种将相关属性聚集（封装）在一起的方式。
-在面向对象语言中，thrift结构体被转换成类。
-异常在语法和功能上类似于结构体，只不过异常使用关键字exception而不是struct关键字声明。
-但它在语义上不同于结构体—当定义一个RPC服务时，开发者可能需要声明一个远程方法抛出一个异常。
+struct ListResponse {
+  1: required ResponseStatus status,
+  2: optional list<i32> ids,
+  3: optional list<double> scores,
+  10: optional string strategy,
+  11: optional string globalId,
+  12: optional map<string, string> extraInfo,
+}
 
-* 服务
-```md
-服务的定义方法在语法上等同于面向对象语言中定义接口。
-Thrift编译器会产生实现这些接口的client和server桩。
+service Hello {
+    string helloString(1:string para)
+    i32 helloInt(1:i32 para)
+    bool helloBoolean(1:bool para)
+    void helloVoid()
+    string helloNull()
+}
 ```
+
 * 类型定义
 ```md
 Thrift支持C/C++风格的typedef:
@@ -61,7 +56,7 @@ typedef Tweet ReTweet  \\b
 	Thrfit支持shell注释风格，C/C++语言中单行或者多行注释风格
 ```
 * 命名空间
-```mf
+```md
 Thrift中的命名空间同C++中的namespace和java中的package类似，它们均提供了一种组织（隔离）代码的方式
 因为每种语言均有自己的命名空间定义方式（如python中有module），Thrift允许开发者针对特定语言定义namespace
 		namespace cpp com.example.project  // a
@@ -109,6 +104,6 @@ a．  分号是可选的，可有可无；支持十六进制赋值。
 	b． 参数可以是基本类型或者结构体，参数是只读的（const），不可以作为返回值！！！
 	c． 返回值可以是基本类型或者结构体
 	d． 返回值可以是void
-	注意，函数中参数列表的定义方式与struct完全一样
-	Service支持继承，一个service可使用extends关键字继承另一个service
+
+注意，函数中参数列表的定义方式与struct完全一样，Service支持继承，一个service可使用extends关键字继承另一个service。
 ```
