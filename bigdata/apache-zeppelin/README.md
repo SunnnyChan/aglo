@@ -2,24 +2,9 @@
 ```md
 是一款基于Web的多用途笔记本，用于数据分析和数据可视化。
 ```
-s
-## Directories
-* /bin
-* /notebook  //默认的notebook的持久化存储目录
-* /conf
-```md
-/conf/shiro.ini //apache shiro框架使用的权限控制文件
-
-/conf/zeppelin-env.sh //${ZEPPELIN_HOME}/bin/common.sh脚本调用
-
-/conf/zeppelin-site.xml //zeppelin的配置模板，被注释掉的 property 是 zeppelin 的默认配置
-
-/conf/interpreter.json 
-  zeppelin需要知道全局已经注册了哪些interpreter，以及这些interpreter的配置。
-  InterpreterInfoSaving类的唯一实例会被持久化到 ${ZEPPELIN_HOME/conf/interpreter.json文件。
-``` 
-
 ## Modules
+* [/conf](modules/Conf.md)
+
 * [zeppelin-server](modules/zeppelin-server/README.md)
 ```md
 项目入口，通过Jetty内嵌服务器提供WebSocekt服务和RESTful服务，并且提供了基本的权限验证服务。
@@ -59,6 +44,26 @@ Zeppelin-0.7 以后新加入的模块，使 interpreter、storage
 ``` 
 ![](pic/zeppelin-modules.png)
 
-# References
-* [zeppelin源码分析](https://blog.csdn.net/spacewalkman/article/category/6228596)
-* [Apache Zeppelin 项目结构及代码分析](https://www.jianshu.com/p/02596c7a2342)
+* /bin
+* /notebook  //默认的notebook的持久化存储目录
+
+## 技术栈
+### 前端
+```md
+主要使用AngularJS框架开发，使用Node.js进行包的构建。
+使用Jupyter Notebook实现记事本功能，并且使用了Highlight.js和Bootstrap。
+```
+### 后端
+```md
+使用了Jetty作为内嵌服务器，通信方式除了WebSocket，还使用Jersey框架提供了Restful服务。
+
+由于Zeppelin的解释器（Interpreter）是独立的JVM进程，
+因此Zeppelin 使用 Apache Commons Exec 框架来使主进程可以启动解释器进程，
+并且使用Thrift框架在主进程与解释器进程间进行通信。
+
+使用 Apache Shiro进行权限控制，
+使用Apache Lucence对Note进行全文检索。
+```
+
+## References
+* [zeppelin 源码分析](https://blog.csdn.net/spacewalkman/article/category/6228596)
