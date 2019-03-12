@@ -32,36 +32,41 @@ Thrift最重要的组件是编译器（采用C++编写），它为用户生成�
 ```
 
 ## thrift
-* 网络栈
+### 网络栈
+* Transport
 ```md
-	Transport
-		Transport层提供了一个简单的网络读写抽象层。
-		使得thrift底层的transport从系统其它部分（如：序列化/反序列化）解耦
-		接口提供的方法
-			open
-			close
-			read
-			write
-			flush
-		Thrift使用ServerTransport接口接受或者创建原始transport对象
-			ServerTransport用在server端，为到来的连接创建Transport对象
-			open
-			listen
-			accept
-			close
-	Protocol
-		Protocol抽象层定义了一种将内存中数据结构映射成可传输格式的机制。
-		Protocol定义了datatype怎样使用底层的Transport对自己进行编解码。
-		Protocol的实现要给出编码机制并负责对数据进行序列化。
-	 Processor
-		Processor封装了从输入数据流中读数据和向数据数据流中写数据的操作。
-		读写数据流用Protocol对象表示
-		与服务相关的processor实现由编译器产生
-		Processor主要工作流程如下
-			从连接中读取数据（使用输入protocol），将处理授权给handler（由用户实现），最后将结果写到连接上（使用输出protocol）。
+Transport层提供了一个简单的网络读写抽象层。
+使得thrift底层的transport从系统其它部分（如：序列化/反序列化）解耦
+
+接口提供的方法
+open
+close
+read
+write
+flush
+
+Thrift使用ServerTransport接口接受或者创建原始transport对象
+ServerTransport用在server端，为到来的连接创建Transport对象
+open
+listen
+accept
+close
+```
+* Protocol
+```md
+Protocol抽象层定义了一种将内存中数据结构映射成可传输格式的机制。
+Protocol定义了datatype怎样使用底层的Transport对自己进行编解码。
+Protocol的实现要给出编码机制并负责对数据进行序列化。
+```
+* Processor
+```md
+Processor封装了从输入数据流中读数据和向数据数据流中写数据的操作。
+读写数据流用Protocol对象表示，与服务相关的processor实现由编译器产生。
+Processor主要工作流程如下，从连接中读取数据（使用输入protocol），
+将处理授权给handler（由用户实现），最后将结果写到连接上（使用输出protocol）。
 ```
 
-* 传输格式
+### 传输格式
 ```md
 TBinaryProtocol – 二进制格式.
 TCompactProtocol – 压缩格式
@@ -69,7 +74,7 @@ TJSONProtocol – JSON格式
 TSimpleJSONProtocol –提供JSON只写协议, 生成的文件很容易通过脚本语言解析。
 TDebugProtocol – 使用易懂的可读的文本格式，以便于debug
 ```
-* 数据传输方式
+### 数据传输方式
 ```md
 TSocket -阻塞式socket
 TFramedTransport – 以frame为单位进行传输，非阻塞式服务中使用。
@@ -77,7 +82,7 @@ TFileTransport – 以文件形式进行传输。
 TMemoryTransport – 将内存用于I/O. java实现时内部实际使用了简单的ByteArrayOutputStream。
 TZlibTransport – 使用zlib进行压缩， 与其他传输方式联合使用。当前无java实现。
 ```
-* 服务模型
+### 服务模型
 ```md
 TSimpleServer – 简单的单线程服务模型，常用于测试
 TThreadPoolServer – 多线程服务模型，使用标准的阻塞式IO。
