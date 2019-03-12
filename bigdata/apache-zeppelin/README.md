@@ -5,8 +5,11 @@
 
 ![](pic/zeppelin-exec.jpg)
 
-## Work Flow
+## Project Hierarchy
+* /bin
+* /notebook  //默认的notebook的持久化存储目录
 
+## Work Flow
 
 ## Modules
 * [/conf](modules/Conf.md)
@@ -49,9 +52,6 @@ Zeppelin-0.7 以后新加入的模块，使 interpreter、storage
 不过目前 helium 相关的很多功能还处于 Experimental 阶段，因此不太建议在生产环境中使用。
 ``` 
 ![](pic/zeppelin-modules.png)
-
-* /bin
-* /notebook  //默认的notebook的持久化存储目录
 
 ## 技术栈
 ### 前端
