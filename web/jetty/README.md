@@ -11,7 +11,10 @@ Jetty的口号是“不要在Jetty中部署应用程序，在应用程序中部�
 ## Jetty Architecture
 ![](pic/jetty-arch.jpg)
 ```md
-Connector 负责接收网络请求，Handler 负责解析请求并产生响应，通过线程池 ThreadPool 来执行任务，
+Connector 负责接收网络请求，
+Handler 负责解析请求并产生响应，
+通过线程池 ThreadPool 来执行任务，
+
 而Connector，Handler，ThreadPool 这三个组件都是依附在Server中。
 ```
 ![](pic/jetty-components.jpg)
@@ -30,7 +33,7 @@ Jetty 中还有一些可有可无的组件，我们可以在它上做扩展。
 
 * [ThreadPool](jetty/ThreadPool.md)
 
-* [LifeCycle](jetty/ThreadPool.md)
+* [LifeCycle](jetty/LifeCycle.md)
 
 ## Jetty
 ![](pic/jetty-workflow.png)

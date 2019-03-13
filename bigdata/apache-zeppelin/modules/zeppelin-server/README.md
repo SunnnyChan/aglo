@@ -16,5 +16,17 @@ Apache Zeppelin的服务器模块由三部分组成：
 6. 初始化动态依赖加载器(DependencyResolver)
 ```
 
+## Class
+
 * [ZeppelinServer](ZeppelinServer.md)
+![](../../pic/ZeppelinServer-UML.jpg)
 * [NotebookServer](NotebookServer.md)
+![](../../pic/NotebookServer.jpg)
+
+* NotebookSocket 
+
+![](../../pic/NotebookSocket-UML.png)
+
+* NotebookWebSocketCreator (Responsible to create the WebSockets for the NotebookServer.)
+* NotebookSocketListener
+* ConnectionManager (managing websocket connections)

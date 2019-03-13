@@ -1,4 +1,4 @@
 # ZeppelinServer
 
-![](../../pic/ZeppelinServer.jpg)
+![](../../pic/ZeppelinServer-UML.jpg)
 

@@ -1,4 +1,7 @@
 # java.lang.Class
+
+![](../../pic/java.lang.Class.jpg)
+
 ```java
 public final class Class<T> implements java.io.Serializable,
                               GenericDeclaration,
@@ -39,10 +42,10 @@ Class对象被保存在了.class文件中，类加载器会检查这个Class对�
 - getConstructors()：获取类中的公共方法
 - getConstructor(Class[] params): 获取类的特定构造方法,params参数指定构造方法的参数类型
 - getDeclaredConstructors(): 获取类中所有的构造方法(public、protected、default、private)
-- getDeclaredConstructor(Class[] params): 获取类的特定构造方法,params参数指定构造方法的参数类型
+- getDeclaredConstructor(Class[] params): 获取类的特定构造方法，params参数指定构造方法的参数类型
 ```
+* 获取类中的方法:
 ```md
-获取类中的方法:
 - getMethods(): 获得类的public类型的方法
 - getMethod(String name, Class[] params): 获得类的特定方法,name参数指定方法的名字,params参数指定方法的参数类型
 - getDeclaredMethods(): 获取类中所有的方法(public、protected、default、private)
@@ -51,7 +54,7 @@ Class对象被保存在了.class文件中，类加载器会检查这个Class对�
 ```md
 - newInstance(): 通过类的不带参数 的构造方法创建这个类的一个对象
 - forName(String className): 获取className参数指定的类的class对象
-- forName(String className,boolean initialize,ClassLoader): 使用指定的类加载器获取className参数指定的类的class对象
+- forName(String className, boolean initialize, ClassLoader): 使用指定的类加载器获取className参数指定的类的class对象
 - getClassLoader(): 获取类加载器
 - getName(): 获取类名
 - getPackage(): 获取类所在的包名
