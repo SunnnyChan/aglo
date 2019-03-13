@@ -1,9 +1,11 @@
 # Jetty Websocket
 
-* [Jetty Websocket API](API.md)
+* org.eclipse.jetty.websocket.servlet
 
 ## Develop
+* [Jetty Websocket API](API.md)
 * [Jetty 9 – Updated WebSocket API](https://webtide.com/jetty-9-updated-websocket-api/)
+
 * First, we need the servlet to provide the glue.
 ```md
 以配置 MyEchoSocket 覆盖 configure（WebSocketServerFactory）。
