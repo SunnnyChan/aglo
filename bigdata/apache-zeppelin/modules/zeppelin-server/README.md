@@ -16,3 +16,5 @@ Apache Zeppelin的服务器模块由三部分组成：
 6. 初始化动态依赖加载器(DependencyResolver)
 ```
 
+* [ZeppelinServer](ZeppelinServer.md)
+* [NotebookServer](NotebookServer.md)
