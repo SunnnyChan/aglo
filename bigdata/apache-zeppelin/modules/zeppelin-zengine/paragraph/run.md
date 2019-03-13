@@ -95,4 +95,5 @@ package org.apache.zeppelin.interpreter.InterpreterFactory;
                                     String noteId,
                                     String replName,
                                     String defaultInterpreterSetting)
+
 ```

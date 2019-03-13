@@ -1,7 +1,5 @@
 # NotebookServer
 
-![](../../pic/NotebookServer.jpg)
-
 ```java
  @Override
   public void onMessage(NotebookSocket conn, String msg) {
