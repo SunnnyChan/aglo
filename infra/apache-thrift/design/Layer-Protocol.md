@@ -10,4 +10,5 @@ TJSONProtocol – JSON格式
 TSimpleJSONProtocol –提供JSON只写协议, 生成的文件很容易通过脚本语言解析。
 TDebugProtocol – 使用易懂的可读的文本格式，以便于debug
 ```
+***注意, 客户端和服务器的协议要一样.***
 

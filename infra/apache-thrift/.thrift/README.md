@@ -5,3 +5,4 @@
 ```
 
 * [thrift types](Types.md)
+* [thrift IDL](IDL.md)
