@@ -23,7 +23,7 @@
 ```md
 代码执行的最小单位，负责获取代码文本，执行过程控制及返回结果获取。
 ```
-* Notebook
+* [Notebook](notebook/README.md)
 ```md
 Note的manager类，负责Note的CURD，复制、导入导出；
 Note和相关Interpreter配置和运行时映射关系的维护。
@@ -32,23 +32,8 @@ Note和相关Interpreter配置和运行时映射关系的维护。
 ```md
 主要是将其他类封装，提供WebSocket等通信服务。
 ```
-## 记事本持久化模块
-```md
-NotebookRepo
-持久化层顶层接口，规定了持久化层的基本操作。
-AzureNotebookRepo
-数据存入Azure云的实现。
-S3NotebookRepo
-数据存入Amazon S3文件系统的实现。
-VFSNotebookRepo
-数据存入文件系统的实现
-GitNotebookRepo
-使用Git对Note进行版本管理的实现
-NotebookRepoSync
-使note在本地系统与远程系统之间同步的实现类。
-ZeppelinHubRepo
-存入ZeppelinHub的实现类。
-```
+## [记事本持久化模块](notebook/repo/README.md)
+
 ## 解释器执行调度器模块
 ```md
 此处为“生产者——消费者”模型，Note和RemoteInterpreterServer为生产者，

@@ -4,7 +4,17 @@
 Notebook的持久化子系统主要由 NotebookRepo 以及其子类组成。
 ```
 ```md
-1. NotebookRepo是顶层接口，规定了持久化层基本的CRUD接口。 
+NotebookRepo 持久化层顶层接口，规定了持久化层的基本操作。
+NotebookRepoSync 使note在本地系统与远程系统之间同步的实现类。
+
+VFSNotebookRepo 数据存入文件系统的实现
+GitNotebookRepo 使用Git对Note进行版本管理的实现
+S3NotebookRepo和AzureNotebookRepo，实现向2大云存储系统的持久化Notebook。
+ZeppelinHubRepo 是为了向zeppelinhub持久化Notebook而设计的，
+zeppelinhub 是一个类似于Github的分享网站，区别在于Github是分享git仓库的，zeppelinhub是分享note的。
+```
+```md
+1. NotebookRepo 是顶层接口，规定了持久化层基本的CRUD接口。 
 2. NotebookVersioned定义了Note的版本管理接口，目前其实现类只有 GitNotebookRepo。
   GitNotebookRepo是以JGit库实现的基于本地文件系统的、支持以Note为粒度进行checkin和show log的Note仓库。 
 3. VFSNotebookRepo是zeppelin的默认实现类
@@ -21,14 +31,7 @@ Notebook的持久化子系统主要由 NotebookRepo 以及其子类组成。
 zeppelin目前只支持最大2个Repo（maxRepoNum=2作为编译时常量），不能通过配置修改。
 ```
 
-```md
-S3NotebookRepo和AzureNotebookRepo，实现向2大云存储系统的持久化Notebook。
-ZeppelinHubRepo是为了向zeppelinhub持久化Notebook而设计的，
-zeppelinhub是一个类似于Github的分享网站，区别在于Github是分享git仓库的，zeppelinhub是分享note的。
-```
-
 * [VFSNotebookRepo.java](VFSNotebookRepo.md)
-
 
 ## Reference
 * [* Notebook storage options for Apache Zeppelin](https://zeppelin.apache.org/docs/0.7.0/storage/storage.html)
