@@ -19,7 +19,7 @@
 ```md
 由paragraph组成，权限控制、共享和持久化的最小单位。
 ```
-* Paragraph
+* [Paragraph](paragraph/README.md)
 ```md
 代码执行的最小单位，负责获取代码文本，执行过程控制及返回结果获取。
 ```
@@ -36,9 +36,9 @@ Note和相关Interpreter配置和运行时映射关系的维护。
 
 ## 解释器执行调度器模块
 ```md
-此处为“生产者——消费者”模型，Note和RemoteInterpreterServer为生产者，
-Scheduler为消费者，缓冲区为Scheduler内部的Job队列。
-产品为org.apache.zeppelin.scheduler.Job类。
+此处为“生产者——消费者”模型，Note 和 RemoteInterpreterServer 为生产者，
+Scheduler 为消费者，缓冲区为 Scheduler 内部的Job队列。
+产品为 org.apache.zeppelin.scheduler.Job 类。
 ```
 * SchedulerFactory
 ```md

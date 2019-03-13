@@ -5,6 +5,11 @@
 
 * [Java](java/README.md)
 
+## Java Framework
+* [Spring](java-framework/spring/README.md)
+* Netty
+* [Guice](java-framework/google-guice/README.md)
+
 ## Web
 * [Nginx](web/nginx/README.md)
 
