@@ -1,116 +1,50 @@
 ## 简版
 ```json
 {
-  "paragraphs":[8],
-  "name":"Zeppelin Tutorial/Using Pig for querying data",
-  "id":"2C57UKYWR",
-  "angularObjects":{
-  "2C3RWCVAG:shared_process":[
-  ],
-  "2C9KGCHDE:shared_process":[
-  ],
-  "2C8X2BS16:shared_process":[
-  ]
-  },
-  "config":{
-  },
-  "info":{
-  }
+"paragraphs":[],
+"name":"sunnychan/spark",
+"id":"2E6PUMJYQ",
+"noteParams":{
+},
+"noteForms":{
+},
+"angularObjects":{
+"md:shared_process":[
+],
+"sh:shared_process":[
+],
+"spark:shared_process":[
+]
+},
+"config":{
+"isZeppelinNotebookCronEnable":false,
+"looknfeel":"default",
+"personalizedMode":"false"
+},
+"info":{
+}
 }
 ```
-## 详细
 ```json
 {
   "paragraphs": [
     {
-      "text": "%md\n\n\n### [Apache Pig](http://pig.apache.org/) is a platform for analyzing large data sets that consists of a high-level language for expressing data analysis programs, coupled with infrastructure for evaluating these programs. The salient property of Pig programs is that their structure is amenable to substantial parallelization, which in turns enables them to handle very large data sets.\n\nPig\u0027s language layer currently consists of a textual language called Pig Latin, which has the following key properties:\n\n* Ease of programming. It is trivial to achieve parallel execution of simple, \"embarrassingly parallel\" data analysis tasks. Complex tasks comprised of multiple interrelated data transformations are explicitly encoded as data flow sequences, making them easy to write, understand, and maintain.\n* Optimization opportunities. The way in which tasks are encoded permits the system to optimize their execution automatically, allowing the user to focus on semantics rather than efficiency.\n* Extensibility. Users can create their own functions to do special-purpose processing.\n",
+      "text": "sc.version\n",
       "user": "anonymous",
-      "dateUpdated": "Jan 22, 2017 12:48:50 PM",
+      "dateUpdated": "2019-03-11 21:26:26.288",
       "config": {
         "colWidth": 12.0,
+        "fontSize": 9.0,
         "enabled": true,
         "results": {},
         "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
         },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true,
+        "editorMode": "ace/mode/scala",
         "tableHide": false
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003e\u003ca href\u003d\"http://pig.apache.org/\"\u003eApache Pig\u003c/a\u003e is a platform for analyzing large data sets that consists of a high-level language for expressing data analysis programs, coupled with infrastructure for evaluating these programs. The salient property of Pig programs is that their structure is amenable to substantial parallelization, which in turns enables them to handle very large data sets.\u003c/h3\u003e\n\u003cp\u003ePig\u0026rsquo;s language layer currently consists of a textual language called Pig Latin, which has the following key properties:\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003eEase of programming. It is trivial to achieve parallel execution of simple, \u0026ldquo;embarrassingly parallel\u0026rdquo; data analysis tasks. Complex tasks comprised of multiple interrelated data transformations are explicitly encoded as data flow sequences, making them easy to write, understand, and maintain.\u003c/li\u003e\n  \u003cli\u003eOptimization opportunities. The way in which tasks are encoded permits the system to optimize their execution automatically, allowing the user to focus on semantics rather than efficiency.\u003c/li\u003e\n  \u003cli\u003eExtensibility. Users can create their own functions to do special-purpose processing.\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1483277502513_1156234051",
-      "id": "20170101-213142_1565013608",
-      "dateCreated": "Jan 1, 2017 9:31:42 PM",
-      "dateStarted": "Jan 22, 2017 12:48:50 PM",
-      "dateFinished": "Jan 22, 2017 12:48:51 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%md\n\nThis pig tutorial use pig to do the same thing as spark tutorial. The default mode is mapreduce, you can also use other modes like local/tez_local/tez. For mapreduce mode, you need to have hadoop installed and export `HADOOP_CONF_DIR` in `zeppelin-env.sh`\n\nThe tutorial consists of 3 steps.\n\n* Use shell interpreter to download bank.csv and upload it to hdfs\n* use `%pig` to process the data\n* use `%pig.query` to query the data",
-      "user": "anonymous",
-      "dateUpdated": "Jan 22, 2017 12:48:55 PM",
-      "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "markdown",
-          "editOnDblClick": true
-        },
-        "editorMode": "ace/mode/markdown",
-        "editorHide": true,
-        "tableHide": false
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003cp\u003eThis pig tutorial use pig to do the same thing as spark tutorial. The default mode is mapreduce, you can also use other modes like local/tez_local/tez. For mapreduce mode, you need to have hadoop installed and export \u003ccode\u003eHADOOP_CONF_DIR\u003c/code\u003e in \u003ccode\u003ezeppelin-env.sh\u003c/code\u003e\u003c/p\u003e\n\u003cp\u003eThe tutorial consists of 3 steps.\u003c/p\u003e\n\u003cul\u003e\n  \u003cli\u003eUse shell interpreter to download bank.csv and upload it to hdfs\u003c/li\u003e\n  \u003cli\u003euse \u003ccode\u003e%pig\u003c/code\u003e to process the data\u003c/li\u003e\n  \u003cli\u003euse \u003ccode\u003e%pig.query\u003c/code\u003e to query the data\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1483689316217_-629483391",
-      "id": "20170106-155516_1050601059",
-      "dateCreated": "Jan 6, 2017 3:55:16 PM",
-      "dateStarted": "Jan 22, 2017 12:48:55 PM",
-      "dateFinished": "Jan 22, 2017 12:48:55 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%sh\n\nwget https://s3.amazonaws.com/apache-zeppelin/tutorial/bank/bank.csv\nhadoop fs -put bank.csv .\n",
-      "user": "anonymous",
-      "dateUpdated": "Jan 22, 2017 12:51:48 PM",
-      "config": {
-        "colWidth": 12.0,
-        "enabled": true,
-        "results": {},
-        "editorSetting": {
-          "language": "text",
-          "editOnDblClick": false
-        },
-        "editorMode": "ace/mode/text"
       },
       "settings": {
         "params": {},
@@ -121,32 +55,86 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "--2017-01-22 12:51:48--  https://s3.amazonaws.com/apache-zeppelin/tutorial/bank/bank.csv\nResolving s3.amazonaws.com... 52.216.80.227\nConnecting to s3.amazonaws.com|52.216.80.227|:443... connected.\nHTTP request sent, awaiting response... 200 OK\nLength: 461474 (451K) [application/octet-stream]\nSaving to: \u0027bank.csv.3\u0027\n\n     0K .......... .......... .......... .......... .......... 11%  141K 3s\n    50K .......... .......... .......... .......... .......... 22%  243K 2s\n   100K .......... .......... .......... .......... .......... 33%  449K 1s\n   150K .......... .......... .......... .......... .......... 44%  413K 1s\n   200K .......... .......... .......... .......... .......... 55%  746K 1s\n   250K .......... .......... .......... .......... .......... 66%  588K 0s\n   300K .......... .......... .......... .......... .......... 77%  840K 0s\n   350K .......... .......... .......... .......... .......... 88%  795K 0s\n   400K .......... .......... .......... .......... .......... 99% 1.35M 0s\n   450K                                                       100% 13.2K\u003d1.1s\n\n2017-01-22 12:51:50 (409 KB/s) - \u0027bank.csv.3\u0027 saved [461474/461474]\n\n17/01/22 12:51:51 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable\n"
+            "data": "res36: String \u003d 2.4.0\n"
           }
         ]
       },
       "apps": [],
-      "jobName": "paragraph_1485058437578_-1906301827",
-      "id": "20170122-121357_640055590",
-      "dateCreated": "Jan 22, 2017 12:13:57 PM",
-      "dateStarted": "Jan 22, 2017 12:51:48 PM",
-      "dateFinished": "Jan 22, 2017 12:51:52 PM",
+      "jobName": "paragraph_1551171249437_-1857577060",
+      "id": "20190226-165409_698627529",
+      "dateCreated": "2019-02-26 16:54:09.437",
+      "dateStarted": "2019-03-11 21:26:26.306",
+      "dateFinished": "2019-03-11 21:26:26.603",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%pig\n\nbankText \u003d load \u0027bank.csv\u0027 using PigStorage(\u0027;\u0027);\nbank \u003d foreach bankText generate $0 as age, $1 as job, $2 as marital, $3 as education, $5 as balance; \nbank \u003d filter bank by age !\u003d \u0027\"age\"\u0027;\nbank \u003d foreach bank generate (int)age, REPLACE(job,\u0027\"\u0027,\u0027\u0027) as job, REPLACE(marital, \u0027\"\u0027, \u0027\u0027) as marital, (int)(REPLACE(balance, \u0027\"\u0027, \u0027\u0027)) as balance;\n\n-- The following statement is optional, it depends on whether your needs.\n-- store bank into \u0027clean_bank.csv\u0027 using PigStorage(\u0027;\u0027);\n\n\n",
+      "text": "select 1;",
       "user": "anonymous",
-      "dateUpdated": "Feb 24, 2017 5:08:08 PM",
+      "dateUpdated": "2019-03-13 16:37:26.505",
       "config": {
         "colWidth": 12.0,
-        "editorMode": "ace/mode/pig",
+        "fontSize": 9.0,
+        "enabled": true,
         "results": {},
-        "enabled": true,
         "editorSetting": {
-          "language": "pig",
-          "editOnDblClick": false
-        }
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:1: error: \u0027;\u0027 expected but integer literal found.\nselect 1;\n       ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1551171272558_-1701054050",
+      "id": "20190226-165432_545226500",
+      "dateCreated": "2019-02-26 16:54:32.558",
+      "dateStarted": "2019-03-13 16:37:26.535",
+      "dateFinished": "2019-03-13 16:37:26.547",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "sc.textFile(\"hdfs://10.96.111.130:9000/wordcountdemo/input/wc.input\").flatMap(_.split(\" \")).filter(!_.isEmpty).map((_,1)).reduceByKey(_+_).collect().foreach(println)",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-13 16:37:51.018",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 119.0,
+              "optionOpen": false
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": false,
+        "lineNumbers": false,
+        "title": false
       },
       "settings": {
         "params": {},
@@ -154,39 +142,191 @@
       },
       "results": {
         "code": "SUCCESS",
-        "msg": []
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "(hive,2)\n(mapreduce,1)\n(sqoop,1)\n(spark,2)\n(hadoop,3)\n(storm,1)\n(hbase,1)\n"
+          }
+        ]
+      },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://3bc470a167dd:4040/jobs"
+          ],
+          "interpreterSettingId": "spark"
+        }
       },
       "apps": [],
-      "jobName": "paragraph_1483277250237_-466604517",
-      "id": "20161228-140640_1560978333",
-      "dateCreated": "Jan 1, 2017 9:27:30 PM",
-      "dateStarted": "Feb 24, 2017 5:08:08 PM",
-      "dateFinished": "Feb 24, 2017 5:08:11 PM",
+      "jobName": "paragraph_1551171286654_13340978",
+      "id": "20190226-165446_748418719",
+      "dateCreated": "2019-02-26 16:54:46.654",
+      "dateStarted": "2019-03-13 16:37:51.036",
+      "dateFinished": "2019-03-13 16:37:52.078",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%pig.query\n\nbank_data \u003d filter bank by age \u003c 30;\nb \u003d group bank_data by age;\nforeach b generate group, COUNT($1);\n\n",
+      "text": "import sqlContext.implicits._\n\nval ip2region \u003d sc.textFile(\"hdfs://10.96.111.130:9000/wordcountdemo/input/ipdata_code_with_maxmind.txt\")\n\ncase class Ip(ipstart:Long, ipend:Long, country:String, province: String, city : String, county: String)\n\nval ip_map \u003d ip2region.map(s\u003d\u003es.split(\",\")).filter(s\u003d\u003e(s.length\u003d\u003d9)).map(\ns\u003d\u003eIp(s(0).toLong,\ns(1).toLong, s(2), s(3), s(4), s(5))\n).toDF()\n\nip_map.registerTempTable(\"ip2region\")",
       "user": "anonymous",
-      "dateUpdated": "Feb 24, 2017 5:08:13 PM",
+      "dateUpdated": "2019-03-11 21:29:34.424",
       "config": {
-        "colWidth": 4.0,
-        "editorMode": "ace/mode/pig",
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "tableHide": false,
+        "editorHide": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "warning: there was one deprecation warning; re-run with -deprecation for details\nimport sqlContext.implicits._\nip2region: org.apache.spark.rdd.RDD[String] \u003d hdfs://10.96.111.130:9000/wordcountdemo/input/ipdata_code_with_maxmind.txt MapPartitionsRDD[219] at textFile at \u003cconsole\u003e:22\ndefined class Ip\nip_map: org.apache.spark.sql.DataFrame \u003d [ipstart: bigint, ipend: bigint ... 4 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1551258704324_672497027",
+      "id": "20190227-171144_1849896810",
+      "dateCreated": "2019-02-27 17:11:44.324",
+      "dateStarted": "2019-03-11 21:29:34.447",
+      "dateFinished": "2019-03-11 21:29:36.275",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect distinct country, count(1) as sum from ip2region group by country order by country",
+      "user": "anonymous",
+      "dateUpdated": "2019-03-11 21:31:42.683",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
         "results": {
           "0": {
             "graph": {
-              "mode": "multiBarChart",
+              "mode": "table",
               "height": 300.0,
-              "optionOpen": false
+              "optionOpen": true,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "country",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "sum",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "updated": false,
+                    "names": {
+                      "country": "string",
+                      "sum": "string"
+                    }
+                  },
+                  "updated": false,
+                  "initialized": false,
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  }
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "lineChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                },
+                "pieChart": {}
+              },
+              "commonSetting": {},
+              "keys": [],
+              "groups": [
+                {
+                  "name": "country",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "values": [
+                {
+                  "name": "sum",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
             },
             "helium": {}
           }
         },
-        "enabled": true,
         "editorSetting": {
-          "language": "pig",
-          "editOnDblClick": false
-        }
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql",
+        "tableHide": false
       },
       "settings": {
         "params": {},
@@ -197,161 +337,64 @@
         "msg": [
           {
             "type": "TABLE",
-            "data": "group\tcol_1\n19\t4\n20\t3\n21\t7\n22\t9\n23\t20\n24\t24\n25\t44\n26\t77\n27\t94\n28\t103\n29\t97\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1483277250238_-465450270",
-      "id": "20161228-140730_1903342877",
-      "dateCreated": "Jan 1, 2017 9:27:30 PM",
-      "dateStarted": "Feb 24, 2017 5:08:13 PM",
-      "dateFinished": "Feb 24, 2017 5:08:26 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%pig.query\n\nbank_data \u003d filter bank by age \u003c ${maxAge\u003d40};\nb \u003d group bank_data by age;\nforeach b generate group, COUNT($1) as count;",
-      "user": "anonymous",
-      "dateUpdated": "Feb 24, 2017 5:08:14 PM",
-      "config": {
-        "colWidth": 4.0,
-        "editorMode": "ace/mode/pig",
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "pieChart",
-              "height": 300.0,
-              "optionOpen": false
-            },
-            "helium": {}
-          }
-        },
-        "enabled": true,
-        "editorSetting": {
-          "language": "pig",
-          "editOnDblClick": false
-        }
-      },
-      "settings": {
-        "params": {
-          "maxAge": "36"
-        },
-        "forms": {
-          "maxAge": {
-            "name": "maxAge",
-            "defaultValue": "40",
-            "hidden": false
-          }
-        }
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
+            "data": "country\tsum\nAU\t2\nCN\t1\n"
+          },
           {
-            "type": "TABLE",
-            "data": "group\tcount\n19\t4\n20\t3\n21\t7\n22\t9\n23\t20\n24\t24\n25\t44\n26\t77\n27\t94\n28\t103\n29\t97\n30\t150\n31\t199\n32\t224\n33\t186\n34\t231\n35\t180\n"
+            "type": "TEXT",
+            "data": ""
           }
         ]
       },
+      "runtimeInfos": {
+        "jobUrl": {
+          "propertyName": "jobUrl",
+          "label": "SPARK JOB",
+          "tooltip": "View in Spark web UI",
+          "group": "spark",
+          "values": [
+            "http://3bc470a167dd:4040/jobs"
+          ],
+          "interpreterSettingId": "spark"
+        }
+      },
       "apps": [],
-      "jobName": "paragraph_1483277250239_-465835019",
-      "id": "20161228-154918_1551591203",
-      "dateCreated": "Jan 1, 2017 9:27:30 PM",
-      "dateStarted": "Feb 24, 2017 5:08:14 PM",
-      "dateFinished": "Feb 24, 2017 5:08:29 PM",
+      "jobName": "paragraph_1551255329665_1903770005",
+      "id": "20190227-161529_2066146074",
+      "dateCreated": "2019-02-27 16:15:29.665",
+      "dateStarted": "2019-03-11 21:27:17.826",
+      "dateFinished": "2019-03-11 21:28:01.227",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%pig.query\n\nbank_data \u003d filter bank by marital\u003d\u003d\u0027${marital\u003dsingle,single|divorced|married}\u0027;\nb \u003d group bank_data by age;\nforeach b generate group, COUNT($1) as count;\n\n\n",
       "user": "anonymous",
-      "dateUpdated": "Feb 24, 2017 5:08:15 PM",
-      "config": {
-        "colWidth": 4.0,
-        "editorMode": "ace/mode/pig",
-        "results": {
-          "0": {
-            "graph": {
-              "mode": "scatterChart",
-              "height": 300.0,
-              "optionOpen": false
-            },
-            "helium": {}
-          }
-        },
-        "enabled": true,
-        "editorSetting": {
-          "language": "pig",
-          "editOnDblClick": false
-        }
-      },
-      "settings": {
-        "params": {
-          "marital": "married"
-        },
-        "forms": {
-          "marital": {
-            "name": "marital",
-            "defaultValue": "single",
-            "options": [
-              {
-                "value": "single"
-              },
-              {
-                "value": "divorced"
-              },
-              {
-                "value": "married"
-              }
-            ],
-            "hidden": false
-          }
-        }
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TABLE",
-            "data": "group\tcount\n23\t3\n24\t11\n25\t11\n26\t18\n27\t26\n28\t23\n29\t37\n30\t56\n31\t104\n32\t105\n33\t103\n34\t142\n35\t109\n36\t117\n37\t100\n38\t99\n39\t88\n40\t105\n41\t97\n42\t91\n43\t79\n44\t68\n45\t76\n46\t82\n47\t78\n48\t91\n49\t87\n50\t74\n51\t63\n52\t66\n53\t75\n54\t56\n55\t68\n56\t50\n57\t78\n58\t67\n59\t56\n60\t36\n61\t15\n62\t5\n63\t7\n64\t6\n65\t4\n66\t7\n67\t5\n68\t1\n69\t5\n70\t5\n71\t5\n72\t4\n73\t6\n74\t2\n75\t3\n76\t1\n77\t5\n78\t2\n79\t3\n80\t6\n81\t1\n83\t2\n86\t1\n87\t1\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1483277250240_-480070728",
-      "id": "20161228-142259_575675591",
-      "dateCreated": "Jan 1, 2017 9:27:30 PM",
-      "dateStarted": "Feb 24, 2017 5:08:27 PM",
-      "dateFinished": "Feb 24, 2017 5:08:31 PM",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%pig\n",
-      "dateUpdated": "Jan 1, 2017 9:27:30 PM",
       "config": {},
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1483277250240_-480070728",
-      "id": "20161228-155036_1854903164",
-      "dateCreated": "Jan 1, 2017 9:27:30 PM",
+      "jobName": "paragraph_1551259623076_150076614",
+      "id": "20190227-172703_696983389",
+      "dateCreated": "2019-02-27 17:27:03.076",
       "status": "READY",
-      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "Zeppelin Tutorial/Using Pig for querying data",
-  "id": "2C57UKYWR",
+  "name": "sunnychan/spark",
+  "id": "2E6PUMJYQ",
+  "noteParams": {},
+  "noteForms": {},
   "angularObjects": {
-    "2C3RWCVAG:shared_process": [],
-    "2C9KGCHDE:shared_process": [],
-    "2C8X2BS16:shared_process": []
+    "md:shared_process": [],
+    "sh:shared_process": [],
+    "spark:shared_process": []
   },
-  "config": {},
+  "config": {
+    "isZeppelinNotebookCronEnable": false,
+    "looknfeel": "default",
+    "personalizedMode": "false"
+  },
   "info": {}
 }
 ```
