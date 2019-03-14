@@ -1,30 +1,31 @@
 ## 简版
 ```json
 {
-"paragraphs":[],
-"name":"sunnychan/spark",
-"id":"2E6PUMJYQ",
-"noteParams":{
-},
-"noteForms":{
-},
-"angularObjects":{
-"md:shared_process":[
-],
-"sh:shared_process":[
-],
-"spark:shared_process":[
-]
-},
-"config":{
-"isZeppelinNotebookCronEnable":false,
-"looknfeel":"default",
-"personalizedMode":"false"
-},
-"info":{
-}
+  "paragraphs":[],
+  "name":"sunnychan/spark",
+  "id":"2E6PUMJYQ",
+  "noteParams":{
+  },
+  "noteForms":{
+  },
+  "angularObjects":{
+    "md:shared_process":[
+    ],
+    "sh:shared_process":[
+    ],
+    "spark:shared_process":[
+    ]
+  },
+  "config":{
+    "isZeppelinNotebookCronEnable":false,
+    "looknfeel":"default",
+    "personalizedMode":"false"
+  },
+  "info":{
+  }
 }
 ```
+## 详细
 ```json
 {
   "paragraphs": [
