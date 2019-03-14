@@ -12,6 +12,7 @@
 
 ## DI
 * [JSR-330 规范](DI/JSR-330.md)
+* [HK2](DI/HK2/README.md)
 * [Google-Guice 一个轻量级的DI框架](DI/google-guice/README.md)
 
 ## RPC

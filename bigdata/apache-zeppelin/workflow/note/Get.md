@@ -1,7 +1,7 @@
 # get Note Workflow
 
 ## 从 存储 文件 反序列化
-* org.apache.zeppelin.service.NoteBookService
+* org.apache.zeppelin.service.NoteBook
 ```java
   public Note getNote(String id) {
     try {
@@ -26,6 +26,7 @@
 ```
 ```md
 调用 set 方法的部分，是没有做持久化存储的 Note 属性。
+这些 属性的值 都是通过 HK2 方式注入的。
 ```
 * org.apache.zeppelin.notebook.NoteManager
 ```java
