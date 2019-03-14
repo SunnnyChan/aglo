@@ -1,5 +1,8 @@
 # zeppelin-interpreter
-
+```md
+抽象了 interpreter 接口，规定了解释器的功能。
+并且提供了与 zeppelin-zengine 用 Thrift 进行通信的协议。
+```
 * Interpreter
 ```md
 Interpreter是一个抽象类，规定了所有解释器必须实现的功能。

@@ -1,6 +1,8 @@
 # zeppelin-zengine
-
-
+```md
+实现 Notebook 的持久化和检索服务。
+```
+## 模块代码结构
 * helium
 * interpreter
 * [notebook](notebook/README.md)
@@ -15,23 +17,10 @@
 * util
 
 ## 记事本模块
-* Note
-```md
-由paragraph组成，权限控制、共享和持久化的最小单位。
-```
-* [Paragraph](paragraph/README.md)
-```md
-代码执行的最小单位，负责获取代码文本，执行过程控制及返回结果获取。
-```
-* [Notebook](notebook/README.md)
-```md
-Note的manager类，负责Note的CURD，复制、导入导出；
-Note和相关Interpreter配置和运行时映射关系的维护。
-```
-* NotebookServer
-```md
-主要是将其他类封装，提供WebSocket等通信服务。
-```
+* [Note](notebook/Note.md)
+* [Paragraph](notebook/Paragraph.md)
+* [Notebook](notebook/Notebook.md)
+
 ## [记事本持久化模块](notebook/repo/README.md)
 
 ## 解释器执行调度器模块

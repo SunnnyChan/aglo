@@ -1,5 +1,7 @@
 # zeppelin-server
+
 ```md
+项目入口，通过Jetty内嵌服务器提供WebSocekt服务和RESTful服务，并且提供了基本的权限验证服务。
 ZeppelinServer是各个组件的”组装者”，它是系统的主入口。
 
 Apache Zeppelin的服务器模块由三部分组成：
