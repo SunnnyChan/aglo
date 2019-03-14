@@ -7,7 +7,9 @@
 
 ## Project Hierarchy
 * /bin
-* [/notebook  //默认的notebook的持久化存储目录](note.json.md)
+* /notebook  //默认的notebook的持久化存储目录
+> * [持久化存储实例](note.json.md)
+
 * [/conf](modules/Conf.md)
 
 ## WorkFlow
