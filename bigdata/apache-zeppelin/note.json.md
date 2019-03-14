@@ -1,7 +1,7 @@
 ## 简版
 ```json
 {
-  "paragraphs":[],
+  "paragraphs":[6],
   "name":"sunnychan/spark",
   "id":"2E6PUMJYQ",
   "noteParams":{
