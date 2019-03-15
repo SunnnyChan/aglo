@@ -7,6 +7,10 @@
 * Apache Shiro - 权限控制
 * Apache Lucence - 全文检索
 
+### Pool
+* [Apache commons-pool2](pool/commons-pools.md)
+* ThreadPoolExecutor
+
 ## ORM
 * MyBatis
 
