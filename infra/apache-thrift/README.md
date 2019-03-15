@@ -7,7 +7,7 @@
 ## Project Hierarchy
 * thrift/
 * [compiler/](compiler/README.md)
-* [lib/   # 包含Thrift软件库实现，细分为实施语言。](lib/README.md)
+* [lib/   # 包含Thrift软件库实现，细分为实施语言](lib/README.md)
 * test/
 * tutorial/
 

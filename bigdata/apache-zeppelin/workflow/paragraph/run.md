@@ -218,7 +218,7 @@ InterpreterFactory 实例 在 NoteBook 类中注入。
 最终获取的是一个  RemoteInterpreter 实例。
 ```
 
-* 4.2 org.apache.zeppelin.scheduler  submit()
+* 4.2 org.apache.zeppelin.scheduler.AbstractScheduler (RemoteScheduler)  submit()
 ```java
   @Override
   public void submit(Job job) {
@@ -230,3 +230,363 @@ InterpreterFactory 实例 在 NoteBook 类中注入。
 ```md
 放到调度队列，等待执行，默认 FIFO。
 ```
+
+* 5. [Scheduler 调度流程](../scheduler/README.md)
+
+* 6. org.apache.zeppelin.notebook.Paragraph 
+```java
+  @Override
+  protected InterpreterResult jobRun() throws Throwable {
+    this.runtimeInfos.clear();
+    this.interpreter = getBindedInterpreter();
+    if (this.interpreter == null) {
+      LOGGER.error("Can not find interpreter name " + intpText);
+      throw new RuntimeException("Can not find interpreter for " + intpText);
+    }
+    LOGGER.info("Run paragraph [paragraph_id: {}, interpreter: {}, note_id: {}, user: {}]",
+        getId(), this.interpreter.getClassName(), note.getId(), subject.getUser());
+    InterpreterSetting interpreterSetting = ((ManagedInterpreterGroup)
+        interpreter.getInterpreterGroup()).getInterpreterSetting();
+    if (interpreterSetting != null) {
+      interpreterSetting.waitForReady();
+    }
+    if (this.user != null) {
+      if (subject != null && !interpreterSetting.isUserAuthorized(subject.getUsersAndRoles())) {
+        String msg = String.format("%s has no permission for %s", subject.getUser(), intpText);
+        LOGGER.error(msg);
+        return new InterpreterResult(Code.ERROR, msg);
+      }
+    }
+
+    for (Paragraph p : userParagraphMap.values()) {
+      p.setText(getText());
+    }
+
+    // inject form
+    String script = this.scriptText;
+    if (interpreter.getFormType() == FormType.NATIVE) {
+      settings.clear();
+    } else if (interpreter.getFormType() == FormType.SIMPLE) {
+      // inputs will be built from script body
+      LinkedHashMap<String, Input> inputs = Input.extractSimpleQueryForm(script, false);
+      LinkedHashMap<String, Input> noteInputs = Input.extractSimpleQueryForm(script, true);
+      final AngularObjectRegistry angularRegistry =
+          interpreter.getInterpreterGroup().getAngularObjectRegistry();
+      String scriptBody = extractVariablesFromAngularRegistry(script, inputs, angularRegistry);
+
+      settings.setForms(inputs);
+      if (!noteInputs.isEmpty()) {
+        if (!note.getNoteForms().isEmpty()) {
+          Map<String, Input> currentNoteForms =  note.getNoteForms();
+          for (String s : noteInputs.keySet()) {
+            if (!currentNoteForms.containsKey(s)) {
+              currentNoteForms.put(s, noteInputs.get(s));
+            }
+          }
+        } else {
+          note.setNoteForms(noteInputs);
+        }
+      }
+      script = Input.getSimpleQuery(note.getNoteParams(), scriptBody, true);
+      script = Input.getSimpleQuery(settings.getParams(), script, false);
+    }
+    LOGGER.debug("RUN : " + script);
+    try {
+      InterpreterContext context = getInterpreterContext();
+      InterpreterContext.set(context);
+      InterpreterResult ret = interpreter.interpret(script, context);
+
+      if (interpreter.getFormType() == FormType.NATIVE) {
+        note.setNoteParams(context.getNoteGui().getParams());
+        note.setNoteForms(context.getNoteGui().getForms());
+      }
+
+      if (Code.KEEP_PREVIOUS_RESULT == ret.code()) {
+        return getReturn();
+      }
+
+      context.out.flush();
+      List<InterpreterResultMessage> resultMessages = context.out.toInterpreterResultMessage();
+      resultMessages.addAll(ret.message());
+      InterpreterResult res = new InterpreterResult(ret.code(), resultMessages);
+      Paragraph p = getUserParagraph(getUser());
+      if (null != p) {
+        p.setResult(res);
+        p.settings.setParams(settings.getParams());
+      }
+
+      // After the paragraph is executed,
+      // need to apply the paragraph to the configuration in the
+      // `interpreter-setting.json` config
+      if (this.configSettingNeedUpdate) {
+        this.configSettingNeedUpdate = false;
+        InterpreterSettingManager intpSettingManager
+            = this.note.getInterpreterSettingManager();
+        if (null != intpSettingManager) {
+          InterpreterGroup intpGroup = interpreter.getInterpreterGroup();
+          if (null != intpGroup && intpGroup instanceof ManagedInterpreterGroup) {
+            String name = ((ManagedInterpreterGroup) intpGroup).getInterpreterSetting().getName();
+            Map<String, Object> config
+                = intpSettingManager.getConfigSetting(name);
+            applyConfigSetting(config);
+          }
+        }
+      }
+
+      return res;
+    } finally {
+      InterpreterContext.remove();
+    }
+  }
+```
+```md
+InterpreterResult ret = interpreter.interpret(script, context);
+调 RemoteInterpreter interpret() 方法执行
+```
+* 7. org.apache.zeppelin.interpreter.remote.RemoteInterpreter
+```java
+  @Override
+  public InterpreterResult interpret(final String st, final InterpreterContext context)
+      throws InterpreterException {
+    if (LOGGER.isDebugEnabled()) {
+      LOGGER.debug("st:\n{}", st);
+    }
+
+    final FormType form = getFormType();
+    RemoteInterpreterProcess interpreterProcess = null;
+    try {
+      interpreterProcess = getOrCreateInterpreterProcess();
+    } catch (IOException e) {
+      throw new InterpreterException(e);
+    }
+    this.lifecycleManager.onInterpreterUse(this.getInterpreterGroup(), sessionId);
+    return interpreterProcess.callRemoteFunction(
+        new RemoteInterpreterProcess.RemoteFunction<InterpreterResult>() {
+          @Override
+          public InterpreterResult call(Client client) throws Exception {
+
+            RemoteInterpreterResult remoteResult = client.interpret(
+                sessionId, className, st, convert(context));
+            Map<String, Object> remoteConfig = (Map<String, Object>) gson.fromJson(
+                remoteResult.getConfig(), new TypeToken<Map<String, Object>>() {
+                }.getType());
+            context.getConfig().clear();
+            if (remoteConfig != null) {
+              context.getConfig().putAll(remoteConfig);
+            }
+            GUI currentGUI = context.getGui();
+            GUI currentNoteGUI = context.getNoteGui();
+            if (form == FormType.NATIVE) {
+              GUI remoteGui = GUI.fromJson(remoteResult.getGui());
+              GUI remoteNoteGui = GUI.fromJson(remoteResult.getNoteGui());
+              currentGUI.clear();
+              currentGUI.setParams(remoteGui.getParams());
+              currentGUI.setForms(remoteGui.getForms());
+              currentNoteGUI.setParams(remoteNoteGui.getParams());
+              currentNoteGUI.setForms(remoteNoteGui.getForms());
+            } else if (form == FormType.SIMPLE) {
+              final Map<String, Input> currentForms = currentGUI.getForms();
+              final Map<String, Object> currentParams = currentGUI.getParams();
+              final GUI remoteGUI = GUI.fromJson(remoteResult.getGui());
+              final Map<String, Input> remoteForms = remoteGUI.getForms();
+              final Map<String, Object> remoteParams = remoteGUI.getParams();
+              currentForms.putAll(remoteForms);
+              currentParams.putAll(remoteParams);
+            }
+
+            InterpreterResult result = convert(remoteResult);
+            return result;
+          }
+        }
+    );
+
+  }
+```
+```md
+重点看 
+  interpreterProcess = getOrCreateInterpreterProcess();
+
+  RemoteInterpreterResult remoteResult = client.interpret(
+                sessionId, className, st, convert(context));
+```
+* 7.1 org.apache.zeppelin.interpreter.remote.RemoteInterpreter
+```java
+RemoteInterpreter类 相当于 RemoteInterpreter 相关操作API。
+```
+```java
+  public synchronized RemoteInterpreterProcess getOrCreateInterpreterProcess() throws IOException {
+    if (this.interpreterProcess != null) {
+      return this.interpreterProcess;
+    }
+    ManagedInterpreterGroup intpGroup = getInterpreterGroup();
+    this.interpreterProcess = intpGroup.getOrCreateInterpreterProcess(getUserName(), properties);
+    return interpreterProcess;
+  }
+```
+```md
+以上 代码 主要是获取 thrift Client，这里是 RemoteInterpreterProcess 实例。
+```
+* 7.1.1 org.apache.zeppelin.interpreter.ManagedInterpreterGroup
+```java
+  public synchronized RemoteInterpreterProcess getOrCreateInterpreterProcess(String userName,
+                                                                             Properties properties)
+      throws IOException {
+    if (remoteInterpreterProcess == null) {
+      LOGGER.info("Create InterpreterProcess for InterpreterGroup: " + getId());
+      remoteInterpreterProcess = interpreterSetting.createInterpreterProcess(id, userName,
+          properties);
+      remoteInterpreterProcess.start(userName);
+      interpreterSetting.getLifecycleManager().onInterpreterProcessStarted(this);
+      getInterpreterSetting().getRecoveryStorage()
+          .onInterpreterClientStart(remoteInterpreterProcess);
+    }
+    return remoteInterpreterProcess;
+  }
+```
+* 7.1.1.1 org.apache.zeppelin.interpreter.InterpreterSetting
+```java
+  synchronized RemoteInterpreterProcess createInterpreterProcess(String interpreterGroupId,
+                                                                 String userName,
+                                                                 Properties properties)
+      throws IOException {
+    if (launcher == null) {
+      createLauncher();
+    }
+    InterpreterLaunchContext launchContext = new
+        InterpreterLaunchContext(properties, option, interpreterRunner, userName,
+        interpreterGroupId, id, group, name, interpreterEventServer.getPort(), interpreterEventServer.getHost());
+    RemoteInterpreterProcess process = (RemoteInterpreterProcess) launcher.launch(launchContext);
+    recoveryStorage.onInterpreterClientStart(process);
+    return process;
+  }
+```
+```md
+实际创建客户端的地方，Interpreter服务端也可能在这里启动。
+```
+* 7.1.1.1.1 org.apache.zeppelin.interpreter.launcher.StandardInterpreterLauncher
+```java
+  @Override
+  public InterpreterClient launch(InterpreterLaunchContext context) throws IOException {
+    LOGGER.info("Launching Interpreter: " + context.getInterpreterSettingGroup());
+    this.properties = context.getProperties();
+    InterpreterOption option = context.getOption();
+    InterpreterRunner runner = context.getRunner();
+    String groupName = context.getInterpreterSettingGroup();
+    String name = context.getInterpreterSettingName();
+    int connectTimeout = getConnectTimeout();
+
+    if (option.isExistingProcess()) {
+      return new RemoteInterpreterRunningProcess(
+          context.getInterpreterSettingName(),
+          connectTimeout,
+          option.getHost(),
+          option.getPort());
+    } else {
+      // try to recover it first
+      if (zConf.isRecoveryEnabled()) {
+        InterpreterClient recoveredClient =
+            recoveryStorage.getInterpreterClient(context.getInterpreterGroupId());
+        if (recoveredClient != null) {
+          if (recoveredClient.isRunning()) {
+            LOGGER.info("Recover interpreter process: " + recoveredClient.getHost() + ":" +
+                recoveredClient.getPort());
+            return recoveredClient;
+          } else {
+            LOGGER.warn("Cannot recover interpreter process: " + recoveredClient.getHost() + ":"
+                + recoveredClient.getPort() + ", as it is already terminated.");
+          }
+        }
+      }
+
+      // create new remote process
+      String localRepoPath = zConf.getInterpreterLocalRepoPath() + "/"
+          + context.getInterpreterSettingId();
+      return new RemoteInterpreterManagedProcess(
+          runner != null ? runner.getPath() : zConf.getInterpreterRemoteRunnerPath(),
+          context.getZeppelinServerRPCPort(), context.getZeppelinServerHost(), zConf.getInterpreterPortRange(),
+          zConf.getInterpreterDir() + "/" + groupName, localRepoPath,
+          buildEnvFromProperties(context), connectTimeout, name,
+          context.getInterpreterGroupId(), option.isUserImpersonate());
+    }
+  }
+```
+```md
+如果 Interpreter 已经启动，则直接创建一个 RemoteInterpreterRunningProcess 客户端连接。
+然后优先尝试恢复，失败后 构建 RemoteInterpreterManagedProcess，调 start 方法 通过 bin/interpreter.sh 脚本创建。
+```
+* 7.1.2 org.apache.zeppelin.interpreter.ManagedInterpreterGroup
+```java
+  @Override
+  public void start(String userName) throws IOException {
+    // start server process
+    CommandLine cmdLine = CommandLine.parse(interpreterRunner);
+    cmdLine.addArgument("-d", false);
+    cmdLine.addArgument(interpreterDir, false);
+    cmdLine.addArgument("-c", false);
+    cmdLine.addArgument(zeppelinServerRPCHost, false);
+    cmdLine.addArgument("-p", false);
+    cmdLine.addArgument(String.valueOf(zeppelinServerRPCPort), false);
+    cmdLine.addArgument("-r", false);
+    cmdLine.addArgument(interpreterPortRange, false);
+    cmdLine.addArgument("-i", false);
+    cmdLine.addArgument(interpreterGroupId, false);
+    if (isUserImpersonated && !userName.equals("anonymous")) {
+      cmdLine.addArgument("-u", false);
+      cmdLine.addArgument(userName, false);
+    }
+    cmdLine.addArgument("-l", false);
+    cmdLine.addArgument(localRepoDir, false);
+    cmdLine.addArgument("-g", false);
+    cmdLine.addArgument(interpreterSettingName, false);
+
+    executor = new DefaultExecutor();
+
+    ByteArrayOutputStream cmdOut = new ByteArrayOutputStream();
+    ProcessLogOutputStream processOutput = new ProcessLogOutputStream(logger);
+    processOutput.setOutputStream(cmdOut);
+
+    executor.setStreamHandler(new PumpStreamHandler(processOutput));
+    watchdog = new ExecuteWatchdog(ExecuteWatchdog.INFINITE_TIMEOUT);
+    executor.setWatchdog(watchdog);
+
+    try {
+      Map procEnv = EnvironmentUtils.getProcEnvironment();
+      procEnv.putAll(env);
+
+      logger.info("Run interpreter process {}", cmdLine);
+      executor.execute(cmdLine, procEnv, this);
+    } catch (IOException e) {
+      running.set(false);
+      throw new RuntimeException(e);
+    }
+
+    try {
+      synchronized (running) {
+        if (!running.get()) {
+          running.wait(getConnectTimeout());
+        }
+      }
+      if (!running.get()) {
+        throw new IOException(new String(
+            String.format("Interpreter Process creation is time out in %d seconds",
+                getConnectTimeout()/1000) + "\n" + "You can increase timeout threshold via " +
+                "setting zeppelin.interpreter.connect.timeout of this interpreter.\n" +
+                cmdOut.toString()));
+      }
+    } catch (InterruptedException e) {
+      logger.error("Remote interpreter is not accessible");
+    }
+    processOutput.setOutputStream(null);
+  }
+```
+* 8 org.apache.zeppelin.interpreter.thrift.RemoteInterpreterService
+```java
+    public RemoteInterpreterResult interpret(String sessionId, String className, String st, RemoteInterpreterContext interpreterContext) throws org.apache.thrift.TException
+    {
+      send_interpret(sessionId, className, st, interpreterContext);
+      return recv_interpret();
+    }
+```
+
+* 9 接下来就是 thrift 的处理
+

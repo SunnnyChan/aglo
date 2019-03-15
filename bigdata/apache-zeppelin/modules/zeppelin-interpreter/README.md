@@ -8,10 +8,8 @@
 Interpreter是一个抽象类，规定了所有解释器必须实现的功能。
 所有解释器都要继承这个抽象类，通过不同的具体实现，来完成不同语言的解释执行。
 ```
-* RemoteInterpreterService
-```md
-此类由Thrift自动生成，定义了主进程与独立JVM解释器进程间的通信协议。
-```
+* [RemoteInterpreterService](RemoteInterpreterService.md)
+
 * InterpreterGroup
 ```md
 一组Interpreter，用于启动启动和停止解释器JVM的最小单元。
