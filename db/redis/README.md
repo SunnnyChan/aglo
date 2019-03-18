@@ -7,4 +7,3 @@
 
 
 ## Resources
-* [Redis 优化策略](https://blog.csdn.net/u011277123/article/details/87929877)
