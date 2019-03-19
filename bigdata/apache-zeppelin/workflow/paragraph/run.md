@@ -588,5 +588,5 @@ RemoteInterpreter类 相当于 RemoteInterpreter 相关操作API。
     }
 ```
 
-* 9 接下来就是 thrift 的处理
+* 9 接下来就是 thrift server 端的处理
 
