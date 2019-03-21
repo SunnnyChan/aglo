@@ -12,7 +12,8 @@
 * [Nginx](web/nginx/README.md)
 * [Jetty](web/jetty/README.md)
 
-* [Jersy](web/jersy/README.md)
+* [JAX-RS](web/JAX-RS/README.md)
+* [Jersey](web/jersey/README.md)
 
 ## Bigdata
 * [Apache Zeppelin](bigdata/apache-zeppelin/README.md)
