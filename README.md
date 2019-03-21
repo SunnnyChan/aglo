@@ -17,7 +17,7 @@
 ## Bigdata
 * [Apache Zeppelin](bigdata/apache-zeppelin/README.md)
 
-### DB
+### Database
 * [Redis](db/redis/README.md)
 
 * [MyBatis](db/mybatis/README.md)
