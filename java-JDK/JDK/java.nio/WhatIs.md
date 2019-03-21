@@ -1,6 +1,5 @@
 # java.nio
 
-
 *  NIO vs. IO
 ```md
 IO是面向流的，而NIO是面向块的。
