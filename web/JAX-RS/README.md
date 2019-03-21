@@ -4,3 +4,4 @@
 
 
 ## References
+* [JAX-RS Tutorial](https://www.mkyong.com/tutorials/jax-rs-tutorials/)
