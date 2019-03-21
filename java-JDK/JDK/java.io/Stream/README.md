@@ -67,5 +67,6 @@ ObjectInputStream 和ObjectOutputStream 类创建的对象称作对象输入流�
 ```
 * 缓冲流
 ```md
-在读入或写出时，对数据进行缓存，以减少I/O的次数 BufferedReader、BufferedWriter、BufferedInputStream、BufferedOutputStream
+在读入或写出时，对数据进行缓存，以减少I/O的次数。
+BufferedReader、BufferedWriter、BufferedInputStream、BufferedOutputStream
 ```
