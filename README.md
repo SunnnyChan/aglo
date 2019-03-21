@@ -10,6 +10,9 @@
 
 ## Web
 * [Nginx](web/nginx/README.md)
+* [Jetty](web/jetty/README.md)
+
+* [Jersy](web/jersy/README.md)
 
 ## Bigdata
 * [Apache Zeppelin](bigdata/apache-zeppelin/README.md)
