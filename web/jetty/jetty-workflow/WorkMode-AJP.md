@@ -1,6 +1,14 @@
 
 # Jetty On AJP
 ```md
+如果将 Jetty 集成到 Jboss 或者 Apache，那么就可以让 Jetty 基于 AJP 模式工作
+```
+```md
+servlet 引擎就不需要解析和封装返回的 HTTP 协议
+	因为 HTTP 协议的解析工作已经在 Apache 或 Nginx 服务器上完成了
+	boss 只要基于更加简单的 AJP 协议工作就行了，这样能加快请求的响应速度
+```
+```md
 AJP（Apache JServ Protocol）是定向包协议。
 因为性能原因，使用二进制格式来传输可读性文本。
 WEB服务器通过TCP连接和SERVLET容器连接。

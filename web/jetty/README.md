@@ -1,12 +1,7 @@
 # [Jetty -  Servlet Engine and Http Server](https://www.eclipse.org/jetty/) 
 > [github](https://github.com/eclipse/jetty.project)
-```md
-Eclipse Jetty 提供的 Web服务器 和 javax.servlet 容器，
-以及对HTTP / 2，WebSocket，OSGi，JMX，JNDI，JAAS和许多其他集成的支持。
 
-Jetty的口号是“不要在Jetty中部署应用程序，在应用程序中部署Jetty”。
-这意味着，将HTTP模块放入您的应用程序，而不是将您的应用程序放入HTTP服务器。
-```
+## [WhatIs](WhatIs.md)
 
 ## Jetty Architecture
 ![](pic/jetty-arch.jpg)
@@ -27,15 +22,16 @@ Jetty 的 Server 的扩展主要是实现一个个 Handler 并将 Handler 加到
 Jetty 中还有一些可有可无的组件，我们可以在它上做扩展。
 如 JMX，你可以定义一些 Mbean 把它加到 Server 中，当 Server 启动的时候，这些 Bean 就会一起工作。
 ```
-* Connector
-* Handler
+* [Connector](jetty/Connector.md)
+* [Handler](jetty/Handler.md)
 * Server
 
 * [ThreadPool](jetty/ThreadPool.md)
 
 * [LifeCycle](jetty/LifeCycle.md)
 
-## Jetty
+## [Jetty Workflow](jetty-workflow/README.md)
+
 ![](pic/jetty-workflow.png)
 ```md
 核心类：org.mortbay.jetty.Server
@@ -44,13 +40,19 @@ Jetty 中还有一些可有可无的组件，我们可以在它上做扩展。
 核心IO处理类：org.mortbay.jetty.nio.SelectChannelConnector
 核心Servlet处理类：org.mortbay.jetty.servlet.ServletHandler
 ```
-
-### 接受请求
-* [基于 HTTP 协议工作](jetty/WorkMode-HTTP.md)
-* [基于 AJP 工作](jetty/WorkMode-AJP.md)
-* [基于 NIO 方式工作](jetty/WorkMode-NIO.md)
-
-### 处理请求
+![数据交互的整体流向](pic/jetty-arch-1.png)
+```md
+绿色部分是Jetty开放给开发者使用的；
+浅橙色表示JDK或Servlet规范定义的（或开发者实现的），不属于Jetty自身实现；
+蓝色部分表示Jetty内部实现的一些组件，不对外暴露
+```
+### Work Mode
+```md
+Jetty 作为一个独立的 Servlet 引擎可以独立提供 Web 服务，也可以与其他 Web 应用服务器集成。
+提供基于两种协议工作 一个是 HTTP，一个是 AJP 协议。
+```
+* [基于 HTTP 协议工作](jetty-workflow/jetty/WorkMode-HTTP.md)
+* [基于 AJP 工作](jetty-workflow/jetty/WorkMode-AJP.md)
 
 ## Jetty Code Modules
 * [jetty-servlet](jetty-servlet/README.md)
@@ -75,12 +77,14 @@ Jetty 中还有一些可有可无的组件，我们可以在它上做扩展。
 所以它前面必然有一个服务器，通常情况下与 Jboss 集成的可能性非常大。
 ```
 
-## Utility
-* [JFinal]
+## [API](https://www.eclipse.org/jetty/javadoc/current/index.html)
 
-## vs. Tomcat
-* [Jetty 的工作原理以及与 Tomcat 的比较](https://www.ibm.com/developerworks/cn/java/j-lo-jetty/index.html)
+## Utility
+* JFinal
 
 ## Reference
+* [Jetty9源码剖析](https://www.ph0ly.com/)
 * [The Definitive Reference](https://www.eclipse.org/jetty/documentation/9.4.x/)
 * [芋道源码 - Jetty 源码解析](http://www.iocoder.cn/Jetty/Jetty-collection/?vip)
+
+* [Jetty使用教程](http://www.cnblogs.com/yiwangzhibujian/p/5845623.html)
