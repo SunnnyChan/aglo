@@ -1,43 +1,25 @@
 # Channel
+```java
+在传统IO中，读取一个文件中的内容：
+File file = new File("data.txt");
+InputStream inputStream = new FileInputStream(file);
+byte[] bytes = new byte[1024];
+inputStream.read(bytes);
+inputStream.close();
+```
 ```md
-Java NIO的通道类似 Java IO 中的流。
+InputStream 实际上就是为读取文件提供一个通道的。
+
+可以将 NIO 中的Channel同传统IO中的Stream来类比。
+但是要注意，传统IO中，Stream是单向的，比如InputStream只能进行读取操作，OutputStream只能进行写操作。
+而Channel是双向的，既可用来进行读操作，又可用来进行写操作。
 ```
 
 ## Channel 对象
-* FileChannel：
-```md
-文件
-阻塞
-```
-* DatagramChannel
-```md
-UDP协议
-阻塞或非阻塞
-
-connect方法仅用于客户端到服务器端的连接，连接的作用仅仅是避免每次发送和接受数据时的安全检查，
-提高发送和接受数据的效率，而不是像TCP连接那样表示握手的意思。
-客户端通道只有调用了connect方法后，才能使用read和write方法读写数据。
-
-客户端也可以不事先调用connet方法，而直接使用receive方法和send方法来实现数据的收发。
-```
-* SocketChannel
-```md
-TCP协议
-阻塞或非阻塞
-
-TCP客户端和TCP服务器端都用它来传输数据。
-客户端必须调用connect方法去连接服务器。
-```
-* ServerSocketChannel
-```md
-用于TCP服务器端的监听和链接
-对每一个新进来的连接都会创建一个SocketChannel。
-
-阻塞或非阻塞
-
-服务器端用于创建TCP连接的通道，只能对accept事件感兴趣。
-accept方法会返回一个已和客户端连接好的SocketChannel通道，它才服务器是真正传输数据的通道。
-```
+* [FileChannel](FileChannel.md)
+* [DatagramChannel](DatagramChannel.md)
+* [SocketChannel](SocketChannel.md)
+* [ServerSocketChannel](ServerSocketChannel.md)
 
 ## 创建
 ```md

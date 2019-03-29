@@ -7,6 +7,7 @@ NIO是基于Channel and Buffer进行操作的，数据总是从通道读取到�
 ## WhatIs(WhatIs.md)
 
 ## Design
+![](pic/NIO-data-flow.jpeg)
 * [Buffer 缓冲区](Buffer/README.md)
 > * [ByteBuffer](Buffer/ByteBuffer.md)
 * [Channel 通道](Channel/README.md)
