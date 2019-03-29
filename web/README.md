@@ -41,3 +41,6 @@ Bayeux 是一种 “发布- 订阅” 协议。
 ```
 
 * [http-request](https://github.com/kevinsawicki/http-request)
+
+* [redant - 一个基于Netty的轻量级Web容器](https://github.com/all4you/redant)
+> * [Netty 实战：如何编写一个麻小俱全的 web 容器](https://www.jianshu.com/p/dbbb75ee01e8)
