@@ -9,7 +9,7 @@
 
 ### Pool
 * [Apache commons-pool2](pool/commons-pools.md)
-* ThreadPoolExecutor
+* [Thread Pool](pool/thread-pool/README.md)
 
 ## ORM
 * MyBatis
