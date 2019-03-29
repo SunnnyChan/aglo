@@ -10,7 +10,6 @@
 
 ## [Web](web/README.md)
 ### Web Server
-* [Nginx](web/nginx/README.md)
 * [Jetty](web/jetty/README.md)
 ### RESTful
 * [JAX-RS](web/JAX-RS/README.md)
