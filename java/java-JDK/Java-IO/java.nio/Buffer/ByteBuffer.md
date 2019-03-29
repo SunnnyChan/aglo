@@ -214,6 +214,12 @@ byte[] bytes = Arrays.copyOf(byteBuffer.array(), byteBuffer.limit());
 System.out.println(Arrays.toString(bytes));
 /*运行结果：[-26, -120, -111, -25, -120, -79, -28, -67, -96] */
 ```
+```md
+还可以通过代码中的utf8编解码器分别获取编码器对象和解码器对象。
+然后通过编码器和解码器提供的方法进行编解码，其中一些方法可以使ByteBuffer和CharBuffer对象循环使用，不必每次都产生一个新的对象。
+
+注意encode和decode方法都会改变源buffer中的position的位置，这点也是容易产生bug的方法。
+```
 
 ## asReadOnlyBuffer() 只读缓冲区
 ```md
