@@ -40,3 +40,5 @@ Bayeux 是一种 “发布- 订阅” 协议。
 ```md
 基于 Jetty 的极速 WEB + ORM 框架。
 ```
+
+* [http-request](https://github.com/kevinsawicki/http-request)

@@ -3,9 +3,9 @@
 * [How to Read Source Code?](How.md)
 
 ## Java Framework
-* [Java-JDK](java-JDK/README.md)
-* [Java-Library](java-lib/README.md)
-* [Java-Framework](java-framework/README.md)
+* [Java-JDK](java/java-JDK/README.md)
+* [Java-Library](java/java-lib/README.md)
+* [Java-Framework](java/java-framework/README.md)
 > * [Spring](java-framework/spring/README.md)
 
 ## [Web](web/README.md)

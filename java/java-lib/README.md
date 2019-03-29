@@ -1,11 +1,6 @@
 # Java 类库
 
-### Web
-* Okhttp
-* [http-request](https://github.com/kevinsawicki/http-request)
-
 ### SerDe
-* Json
 
 ### Utils
 * [Google guava](Guava/README.md)
