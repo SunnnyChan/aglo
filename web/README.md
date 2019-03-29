@@ -25,7 +25,6 @@ Undertow框架jar包： undertow-core.jar undertow-servlet.jar
 ```
 
 * [CometD](https://github.com/cometd/cometd) 
-
 ```md
 CometD 框架是基于 HTTP 的事件驱动通信解决方案。第 2 版本中添加了对注释配置和 WebSocket 的支持。
 CometD 的事件驱动方法非常适合事件驱动 Web 开发的新概念。

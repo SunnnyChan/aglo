@@ -6,7 +6,7 @@
 * [Java-JDK](java/java-JDK/README.md)
 * [Java-Library](java/java-lib/README.md)
 * [Java-Framework](java/java-framework/README.md)
-> * [Spring](java-framework/spring/README.md)
+> * [Spring](java/java-framework/spring/README.md)
 
 ## [Web](web/README.md)
 ### Web Server
