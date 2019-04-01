@@ -3,7 +3,6 @@
 * [Spring](java-framework/Spring/README.md)
 * Netty
 
-
 * Apache Shiro - 权限控制
 * Apache Lucence - 全文检索
 
