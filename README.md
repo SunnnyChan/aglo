@@ -28,7 +28,7 @@
 * [MyBatis](db/mybatis/README.md)
 * [canal - 阿里巴巴 mysql 数据库 binlog 的增量订阅&消费组件](https://github.com/alibaba/canal)
 
-### MricService
+### MricoService
 * [Apache Dubbo](infra/apache-dubbo/README.md)
 * [Apache Thrift](infra/apache-thrift/README.md)
 
