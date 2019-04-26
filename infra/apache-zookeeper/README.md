@@ -30,4 +30,5 @@ Redis 的分布式解决方案 Codis，就利用了 ZooKeeper 来存放数据路
 ```
 
 ## Develop
+* [Deploy](dev/Deploy.md)
 * [API](dev/API.md)
