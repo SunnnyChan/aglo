@@ -16,8 +16,8 @@ CharsetDecoder decoder = charset.newDecoder();
 ## 解析数据
 ```java
 //编码，传入CharBuffer
-ByteBuffer bytebuffer = encoder.encode(in);
+ByteBuffer byteBuffer = encoder.encode(in);
 //解码，传入ByteBuffer
-CharBuffer charbuffer = decoder.decode(in);
+CharBuffer charBuffer = decoder.decode(in);
 ```
 
