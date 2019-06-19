@@ -14,10 +14,12 @@
 -> 处理器返回一个模型视图 ModelAndView 
 -> 视图解析器进行解析 
 -> 返回一个视图对象
-->前端控制器 DispatcherServlet 渲染数据（Moder）
-->将得到视图对象返回给用户
+-> 前端控制器 DispatcherServlet 渲染数据（Moder）
+-> 将得到视图对象返回给用户
 ```
 
+## 
+* [Controller](Controller.md)
 ## 组件
 * [前端控制器 DispatcherServlet](component/DispatcherServlet.md)
 * 处理器映射器 HandlerMapping
