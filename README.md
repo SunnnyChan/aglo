@@ -2,18 +2,13 @@
 
 * [How to Read Source Code?](How.md)
 
-## Java Framework
-* [Java-JDK](java/java-JDK/README.md)
-* [Java-Library](java/java-lib/README.md)
-* [Java-Framework](java/java-framework/README.md)
-* * [Spring](java/spring/README.md)
-
 ## CPP Framework
 * [ProtoBuf](cpp/protobuf/README.md)
 
 ## [Web](web/README.md)
 ### Web Server
 * [Jetty](web/jetty/README.md)
+
 ### RESTful
 * [JAX-RS](web/JAX-RS/README.md)
 * [Jersey](web/jersey/README.md)
